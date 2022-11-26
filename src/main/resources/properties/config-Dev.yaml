@@ -4,3 +4,8 @@ deployment:
   http:
     listener:
       port: "8081"
+
+connectedApp:
+  clientId: "febd36b1cd054c908553db292f77fccf"
+  clientSecret: "99B5864a87E94189B026F9f00B9A5669"
+  grantType: "client_credentials"
