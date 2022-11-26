@@ -1,0 +1,6 @@
+deployment:
+  workers: "1"
+  workerType: "MICRO"
+  http:
+    listener:
+      port: "8081"

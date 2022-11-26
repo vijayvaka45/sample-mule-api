@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
+	<flow name="sample-mule-apiFlow" doc:id="c395d863-1341-4798-8c9d-0729df44f33a" >
+		<http:listener doc:name="Listener" doc:id="d7e27ccb-d434-485e-9928-c7efe332510c" config-ref="httpListenerConfig" path="/test"/>
+		<set-payload value="#[&quot;successfully deployed through mule maven plugin using connected APP in &quot; ++ Mule::p('env')]" doc:name="Set Payload" doc:id="204b16d7-4033-4472-852c-d088d03130ac" />
+		<logger level="INFO" doc:name="Logger" doc:id="a669e7e3-c05d-4187-afc3-645ed3669fcf" message="#[payload]"/>
+	</flow>
+</mule>
