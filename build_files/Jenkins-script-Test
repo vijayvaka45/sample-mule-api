@@ -1,0 +1,20 @@
+pipeline {
+    agent any
+    stages {
+        stage('build') {
+            steps {
+                bat 'mvn clean install'
+            }
+        }
+        stage('Test') {
+            steps {
+                bat 'mvn test'
+            }
+        }
+        stage('Deploy') {
+            steps {
+                bat 'mvn deploy -DmuleDeploy -Denv=Test'
+            }
+        }
+    }
+}
