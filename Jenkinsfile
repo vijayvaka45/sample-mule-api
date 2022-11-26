@@ -1,22 +1,20 @@
 pipeline {
     agent any
+    parameters {
+        string(defaultValue: 'master', description: 'branch', name: 'GIT_BRANCH')
+    }
+    
     stages {
-        stage('build') {
+        stage('Clone sources') {
             steps {
-                bat 'mvn clean install'
+                git branch: "${params.GIT_BRANCH}", url: 'https://github.com/ktoso/maven-git-commit-id-plugin.git'
             }
         }
-        stage('Test') {
+        
+        stage('Build printenv'){
             steps {
-                bat 'mvn test'
+                sh 'printenv'
             }
         }
-        stage('Deploy') {
-		
-			when { branch "dev" }
-				steps {
-					bat 'mvn deploy -DmuleDeploy -Denv=Dev -DconnectedApp.clientId=febd36b1cd054c908553db292f77fccf -DconnectedApp.clientSecret=99B5864a87E94189B026F9f00B9A5669 -DconnectedApp.grantType=client_credentials'
-				}
-					}
     }
 }
